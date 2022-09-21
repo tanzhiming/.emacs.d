@@ -5,14 +5,19 @@
 (setq package-check-signature nil
       load-prefer-newer t)
 
-(setq package-archives '(("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+(setq package-archives '(
+			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 			 ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 			 ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-
 
 ;; initialize the packages
 (unless (bound-and-true-p package--initialized)
   (package-initialize))
+
+
+;; refresh package contents
+(unless package-archive-contents
+  (package-refresh-contents))
 
 ;; settings for use-package package
 (unless (package-installed-p 'use-package)
